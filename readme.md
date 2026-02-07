@@ -179,7 +179,7 @@ Estrutura organizada para facilitar **manutenção, escalabilidade e leitura té
 **1️⃣ Clone o repositório**
 
 ```bash
-git clone [https://github.com/erickystn/projeto_farmacia.git](https://github.com/erickystn/projeto_farmacia.git)
+git clone https://github.com/erickystn/projeto_farmacia.git
 ```
 
 **2️⃣ Acesse a pasta do projeto via terminal**
