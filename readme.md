@@ -93,6 +93,24 @@ Este projeto foi estruturado para:
 | Interface CLI interativa (Menu)    | ✅      |
 
 <br />
+<br />
+
+### 🧭 Passo a Passo de Uso no Terminal
+
+A navegação interativa pelo terminal ocorre através de seleções numéricas geridas pelo `readline-sync`:
+
+1. **Inicialização do Menu:** Ao executar `Menu.ts`, dois produtos de demonstração (um medicamento e um cosmético) são automaticamente carregados na memória.
+2. **Criar Produto (Opção 1):** Digite o nome, preço unitário e selecione a categoria (`1 - Medicamento` ou `2 - Cosmético`).
+   * Para medicamentos, informe o princípio ativo/genérico.
+   * Para cosméticos, informe a fragrância.
+3. **Listar Todos os Produtos (Opção 2):** Exibe a listagem completa com formatação em Real brasileiro (`R$`) via `currencyBr`.
+4. **Buscar Produto por Número (Opção 3):** Digite o ID do item para visualizar seus atributos detalhados.
+5. **Atualizar Dados (Opção 4):** Informe o ID do produto existente e forneça as novas informações para sobrescrever o registro.
+6. **Apagar Produto (Opção 5):** Remove o produto do estoque em memória pelo seu identificador único.
+7. **Buscar Produto por Nome (Opção 6):** Realiza uma busca case-insensitive por correspondência textual parcial.
+8. **Finalizar (Opção 0):** Encerra a aplicação exibindo os dados de autoria do projeto.
+
+<br />
 
 ## Diagrama de Classes
 
@@ -197,10 +215,58 @@ npm install
 **4️⃣ Execute a aplicação**
 
 ```bash
+# Execução direta com ts-node global:
 ts-node Menu.ts
+
+# Ou via npx (sem necessidade de instalação global):
+npx ts-node Menu.ts
 ```
 
 <br />
+<br />
+
+## 💻 Exemplos de Uso e Código
+
+### 1. Polimorfismo e Herança na Criação de Entidades
+```typescript
+import Medicamento from "./src/model/Medicamento";
+import Cosmetico from "./src/model/Cosmetico";
+import ProdutoController from "./src/controller/ProdutoController";
+
+const controller = new ProdutoController();
+
+// Instanciando Medicamento (Tipo 1) com atributo especializado
+const dipirona = new Medicamento(
+    controller.gerarId(),
+    "Dipirona Sódica 500mg",
+    12.50,
+    "Dipirona Monoidratada"
+);
+
+// Instanciando Cosmético (Tipo 2) com atributo especializado
+const hidratante = new Cosmetico(
+    controller.gerarId(),
+    "Creme Hidratante Facial",
+    45.90,
+    "Lavanda e Camomila"
+);
+
+controller.criar(dipirona);
+controller.criar(hidratante);
+```
+
+### 2. Formatação de Saída no Console (`visualizar()`)
+```text
+********************
+  Dados Produto
+********************
+Código: 1
+Nome: Dipirona Sódica 500mg
+Categoria: Medicamento
+Preço: R$ 12,50
+Genérico: Dipirona Monoidratada
+```
+
 
 ## Implementações Futuras
 
